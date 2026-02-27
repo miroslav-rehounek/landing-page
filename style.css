@@ -1,13 +1,14 @@
 :root {
-  --color-bg: #0f172a;
-  --color-surface: #1e293b;
-  --color-border: #334155;
-  --color-text: #e2e8f0;
-  --color-text-muted: #94a3b8;
-  --color-accent: #38bdf8;
-  --color-accent-hover: #7dd3fc;
-  --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --max-width: 64rem;
+  --color-bg: #0b111c;
+  --color-surface: #121a29;
+  --color-border: #1f2a3d;
+  --color-text: #eef2f7;
+  --color-text-muted: #a7b1c2;
+  --color-accent: #d5a25f;
+  --color-accent-hover: #e0b677;
+  --font-stack: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  --font-stack-sans: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+  --max-width: 68rem;
 }
 
 *,
@@ -24,7 +25,8 @@ html {
 
 body {
   font-family: var(--font-stack);
-  background: var(--color-bg);
+  background: radial-gradient(1200px 600px at 80% -10%, rgba(213, 162, 95, 0.15), transparent 60%),
+    linear-gradient(180deg, #0b111c 0%, #0e1626 100%);
   color: var(--color-text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -45,6 +47,18 @@ body {
   justify-content: center;
   text-align: center;
   padding: 2rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -10% -30% auto;
+  width: 40rem;
+  height: 40rem;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.06), transparent 70%);
+  pointer-events: none;
 }
 
 .hero h1 {
@@ -83,6 +97,12 @@ body {
   background: var(--color-accent-hover);
 }
 
+.cta-button:focus-visible,
+.contact-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
 /* ── Services ──────────────────────────────── */
 
 .services {
@@ -117,6 +137,19 @@ body {
 .service-card p {
   color: var(--color-text-muted);
   font-size: 0.95rem;
+}
+
+/* ── Highlights ─────────────────────────────── */
+
+.highlights {
+  padding: 4.5rem 1.5rem;
+}
+
+.highlights-list {
+  display: grid;
+  gap: 0.75rem;
+  list-style: none;
+  color: var(--color-text-muted);
 }
 
 /* ── Contact ───────────────────────────────── */
@@ -157,6 +190,33 @@ body {
 .contact-link:hover {
   border-color: var(--color-accent);
   background: var(--color-surface);
+}
+
+/* ── Motion ────────────────────────────────── */
+
+.hero,
+.service-card,
+.highlights-list li {
+  animation: fadeUp 700ms ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* ── Footer ────────────────────────────────── */
